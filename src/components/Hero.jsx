@@ -12,6 +12,7 @@ CustomEase.create("hop", "0.9, 0, 0.1, 1");
 
 const Hero = () => {
     const overlayRef = useRef(null);
+    const loaderRef = useRef(null);
     useGSAP(() => {
         const projectsContainer = document.querySelector(".projects");
         const locationsContainer = document.querySelector(".locations");
@@ -88,6 +89,8 @@ const Hero = () => {
                                 const imgElement = img.querySelector("img");
 
                                 if (cycle === totalCycles - 1 && img === heroImage) {
+                                    // imgElement.style.position = 'absolute';
+                                    // imgElement.style.top = '0px';
                                     imgElement.src = "https://cdn.cosmos.so/b27736ab-e86a-4f3a-946a-f0145ba6b259?format=jpeg";
                                     gsap.set(".hero-img img", { scale: 2 });
                                 } else {
@@ -241,6 +244,8 @@ const Hero = () => {
                     gsap.to(".banner-img", { scale: 1, delay: 0.5, duration: 0.5 });
                     gsap.to("nav", { y: "0%", duration: 1, ease: "hop", delay: 0.25 });
                 },
+                onComplete: () => gsap.set(".hero-img", { position: 'relative', zIndex: 10, top: '0px' }),
+
             });
 
             imagesTimeline.to(
@@ -282,7 +287,7 @@ const Hero = () => {
                     stagger: 0.1,
                     delay: 0.25,
                     ease: "power3.out",
-                    // onComplete: () => overlayRef.current.element.remove()
+                    // onComplete: () => loaderRef.current.element.remove()
                 },
                 "<"
             );
@@ -290,17 +295,17 @@ const Hero = () => {
     }, [])
 
     return (
-        <>
-            <div className="overlay">
+        <div className='relative h-svh w-full overflow-hidden'>
+            <div className="overlay h-full w-full fixed top-0 left-0">
                 <div className="projects">
                     <div className="projects-header">
                         <p className='uppercase text-sm'>Project</p>
                         <p className='uppercase text-sm'>Director</p>
                     </div>
                 </div>
-                <div className="loader">
+                <div ref={loaderRef} className="loader">
                     <h1 className="logo-line-1">Restoker</h1>
-                    <h1 className="logo-line-2">Dev{' '}</h1>
+                    <h1 className="logo-line-2">Dev</h1>
                 </div>
                 <div className="locations">
                     <div className="locations-header">
@@ -325,7 +330,7 @@ const Hero = () => {
                     <div className="img">
                         <img className='h-full w-full object-cover' src="https://cdn.cosmos.so/7c57bbef-2e1e-4996-aa5d-199bcdc65ad9?format=jpeg" alt="" />
                     </div>
-                    <div className="img hero-img">
+                    <div className="img hero-img absolute top-0">
                         <img className='h-full w-full object-cover' src="https://cdn.cosmos.so/b27736ab-e86a-4f3a-946a-f0145ba6b259?format=jpeg" alt="" />
                     </div>
                     <div className="img">
@@ -345,25 +350,25 @@ const Hero = () => {
                 </div>
             </div>
 
-            <nav>
+            <nav className='fixed w-full z-30 mix-blend-difference'>
                 <div className="links">
-                    <a className='uppercase text-sm text-black' href="#">Index</a>
-                    <a className='uppercase text-sm text-black' href="#">Work</a>
+                    <a className='uppercase text-sm text-white' href="#">Index</a>
+                    <a className='uppercase text-sm text-white' href="#">Work</a>
                 </div>
-                <div className="nav-logo">
-                    <a className='uppercase text-sm text-black' href="#">Restoker<br />Dev</a>
+                <div className="nav-logo mix-blend-difference">
+                    <a className='uppercase text-sm text-white' href="#">Restoker<br />Dev</a>
                 </div>
                 <div className="links">
-                    <a className='uppercase text-sm text-black' href="#">About</a>
-                    <a className='uppercase text-sm text-black' href="#">Contact</a>
+                    <a className='uppercase text-sm text-white' href="#">About</a>
+                    <a className='uppercase text-sm text-white' href="#">Contact</a>
                 </div>
             </nav>
 
-            <div className="banner-img banner-img-1 rounded-4xl">
-                <img className='h-full w-full object-cover' src="https://cdn.cosmos.so/9d3e3e14-3e96-43df-b358-d4a780ad58ca?format=jpeg" alt="" />
+            <div className="banner-img banner-img-1">
+                <img className='h-full w-full object-cover' src="https://cdn.cosmos.so/afaef11c-11a7-4201-8c3b-b47b2c99bf13?format=jpeg" alt="" />
             </div>
-            <div className="banner-img banner-img-2 rounded-4xl">
-                <img className='h-full w-full object-cover' src="https://cdn.cosmos.so/c06a84e9-1571-49f3-b98b-3fc37aa1625f?format=jpeg" alt="" />
+            <div className="banner-img banner-img-2">
+                <img className='h-full w-full object-cover' src="https://cdn.cosmos.so/7555242e-7189-4200-80a4-cf3e4894858f?format=jpeg" alt="" />
             </div>
 
             <div className="intro-copy">
@@ -375,7 +380,7 @@ const Hero = () => {
                 <h1>Fullstack Js</h1>
                 <h1>Developer </h1>
             </div>
-        </>
+        </div>
     )
 }
 

@@ -40,11 +40,11 @@ a {
 }
 
 .overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100svh;
+  /* position: fixed; */
+  /* top: 0; */
+  /* left: 0; */
+  /* width: 100vw; */
+  /* height: 100svh; */
   padding: 2em;
   background-color: #000;
   color: #fff;
@@ -112,7 +112,7 @@ a {
 }
 
 .image-grid {
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -139,8 +139,8 @@ a {
 }
 
 nav {
-  position: fixed;
-  width: 100vw;
+  /* position: fixed; */
+  /* width: 100vw; */
   padding: 1em;
   display: flex;
   gap: 2em;

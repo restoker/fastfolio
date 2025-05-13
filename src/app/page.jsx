@@ -10,17 +10,17 @@ export default function Home() {
     (_, i) => `https://cdn.cosmos.so/${idImages[i].idImg}?format=jpeg`
   );
   return (
-    <main>
-      <section className="relative h-svh w-svw">
+    <main className="">
+      <section className="relative h-svh w-full">
         <Hero />
       </section>
       {/* <Project /> */}
-      <section className="trail-container relative w-svw h-svh flex justify-center items-center overflow-hidden bg-zinc-950 text-white">
+      <section className="trail-container relative w-svw h-[200svh] flex justify-center items-center overflow-hidden bg-zinc-950 text-white">
         <p>( Move your cursor around and see the magic unfold )</p>
         <ImageTrail images={images} />
       </section>
 
-      <section className="relative h-svh w-svw">
+      <section className="relative h-svh w-full">
         <h1>Wrapping Up</h1>
       </section>
     </main>
